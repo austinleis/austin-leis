@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local agent config
+/.claude/
+
+# full-resolution originals (optimized copies live in /public, see npm run images)
+/source-images/

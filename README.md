@@ -1,36 +1,34 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Austin Leis
 
-## Getting Started
+Homepage for the Austin Leis interior design studio. Next.js, statically exported.
 
-First, run the development server:
+## Develop
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Deploy
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Static export to `out/`. On Cloudflare Pages:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Build command: `npm run build`
+- Output directory: `out`
 
-## Learn More
+## Images
 
-To learn more about Next.js, take a look at the following resources:
+`next/image` optimization is unavailable in a static export, so `public/` holds
+pre-sized copies that are committed and served as-is.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Full-resolution originals live in `source-images/`, which is **not** in the repo.
+To change the photography, restore that directory with the same
+`source-images/<project>/<file>.jpg` layout as `public/`, update
+`app/data/tiles.ts`, then run:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm run images
+```
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+That resizes each file to the widest size its tile is ever displayed at and
+writes it into `public/` at the same path.
