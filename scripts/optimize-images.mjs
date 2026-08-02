@@ -1,6 +1,13 @@
 import fs from "node:fs/promises";
 import path from "node:path";
-import sharp from "sharp";
+
+let sharp;
+try {
+  sharp = (await import("sharp")).default;
+} catch {
+  console.error("sharp could not be resolved. It normally ships with next; otherwise: npm i -D sharp");
+  process.exit(1);
+}
 
 const ROOT = process.cwd();
 const SOURCE_DIR = path.join(ROOT, "source-images");
