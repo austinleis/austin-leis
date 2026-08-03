@@ -9,6 +9,8 @@ import { damp } from "@/app/lib/motion";
 
 const LERP = 0.09;
 const KEY_STEP = 140;
+const THROW = 170;
+const MAX_THROW_SPEED = 4;
 const PRIORITY_TILES = 4;
 const TRAILING_TILES = 3;
 
@@ -28,6 +30,8 @@ export function HomeCollage() {
     let last = 0;
     let raf = 0;
     let running = false;
+    let dragging = false;
+    let velocity = 0;
 
     const measure = () => {
       const first = items[0];
@@ -40,19 +44,22 @@ export function HomeCollage() {
       track.style.transform = `translate3d(0, ${-current}px, 0)`;
     };
 
+    const wrap = () => {
+      const shift = Math.floor(current / max);
+      if (shift === 0) return;
+      current -= shift * max;
+      target -= shift * max;
+    };
+
     const tick = (now: number) => {
+      if (dragging) {
+        running = false;
+        return;
+      }
       const delta = last ? Math.min(now - last, 64) : 16.666;
       last = now;
       current = damp(current, target, LERP, delta);
-
-      if (current > max) {
-        current -= max;
-        target -= max;
-      } else if (current < 0) {
-        current += max;
-        target += max;
-      }
-
+      wrap();
       draw();
 
       if (Math.abs(target - current) > 0.05) {
@@ -94,22 +101,40 @@ export function HomeCollage() {
     let pointerId: number | null = null;
     let pointerY = 0;
 
+    let pointerTime = 0;
+
     const onPointerDown = (event: PointerEvent) => {
       if (event.pointerType === "mouse" || menuIsOpen()) return;
       pointerId = event.pointerId;
       pointerY = event.clientY;
+      pointerTime = event.timeStamp;
+      velocity = 0;
+      dragging = true;
+      target = current;
       document.body.classList.add("is-dragging");
     };
 
     const onPointerMove = (event: PointerEvent) => {
-      if (pointerId !== event.pointerId) return;
-      scrollBy(pointerY - event.clientY);
+      if (!dragging || pointerId !== event.pointerId) return;
+      const shift = pointerY - event.clientY;
+      const elapsed = Math.max(event.timeStamp - pointerTime, 1);
+      velocity = velocity * 0.7 + (shift / elapsed) * 0.3;
       pointerY = event.clientY;
+      pointerTime = event.timeStamp;
+      current += shift;
+      target = current;
+      wrap();
+      draw();
     };
 
     const onPointerUp = () => {
+      if (!dragging) return;
+      dragging = false;
       pointerId = null;
       document.body.classList.remove("is-dragging");
+      const speed = Math.max(Math.min(velocity, MAX_THROW_SPEED), -MAX_THROW_SPEED);
+      target = current + speed * THROW;
+      start();
     };
 
     const onFocusIn = (event: FocusEvent) => {

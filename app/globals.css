@@ -129,6 +129,7 @@ body.is-dragging {
     position: absolute;
     inset: 0;
     overflow: hidden;
+    touch-action: pinch-zoom;
     box-sizing: border-box;
     opacity: 0;
     transform: translateY(10px);
