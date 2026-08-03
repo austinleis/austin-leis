@@ -1,10 +1,5 @@
 import Link from "next/link";
-
-const menu = [
-  { label: "Work", href: "/" },
-  { label: "Info", href: "/info" },
-  { label: "Contact", href: "/contact" },
-];
+import { instagram, menu } from "@/app/data/nav";
 
 export function SiteNav() {
   return (
@@ -17,7 +12,11 @@ export function SiteNav() {
       <ul id="n-me">
         {menu.map((item) => (
           <li key={item.href}>
-            <Link className="tx-link" href={item.href} prefetch={false}>
+            <Link
+              className="tx-link"
+              href={item.href}
+              prefetch={item.missing ? false : undefined}
+            >
               {item.label}
             </Link>
           </li>
@@ -27,11 +26,11 @@ export function SiteNav() {
         <li>
           <a
             className="tx-link"
-            href="https://www.instagram.com/"
+            href={instagram.href}
             target="_blank"
             rel="noopener noreferrer"
           >
-            Instagram
+            {instagram.label}
           </a>
         </li>
       </ul>

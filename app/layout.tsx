@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Geist_Mono } from "next/font/google";
-import { Intro } from "@/app/components/Intro";
+import { ViewTransition } from "react";
+import { MobileMenu } from "@/app/components/MobileMenu";
+import { Reveal } from "@/app/components/Reveal";
 import { SiteNav } from "@/app/components/SiteNav";
 import "./globals.css";
 
@@ -10,7 +12,7 @@ const supplyMono = Geist_Mono({
 });
 
 const description =
-  "Austin Leis is an interior design studio in Los Angeles working across residential, retail and hospitality interiors.";
+  "Austin Leis is a photographer based in Los Angeles.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://austinleis.com"),
@@ -20,12 +22,12 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: "/",
-    title: "Austin Leis | Interiors | Los Angeles",
+    title: "Austin Leis | Photographer | Los Angeles",
     description,
   },
   twitter: {
     card: "summary",
-    title: "Austin Leis | Interiors | Los Angeles",
+    title: "Austin Leis | Photographer | Los Angeles",
     description,
   },
   robots: "all",
@@ -48,15 +50,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      data-intro="idle"
-      className={supplyMono.variable}
-    >
+    <html lang="en" className={supplyMono.variable}>
       <body>
-        {children}
+        <ViewTransition default="page">{children}</ViewTransition>
         <SiteNav />
-        <Intro />
+        <MobileMenu />
+        <Reveal />
       </body>
     </html>
   );

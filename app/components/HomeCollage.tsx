@@ -10,6 +10,7 @@ import { damp } from "@/app/lib/motion";
 const LERP = 0.09;
 const KEY_STEP = 140;
 const PRIORITY_TILES = 4;
+const TRAILING_TILES = 3;
 
 const loop = [...tiles, ...tiles.slice(0, loopCloneCount)];
 
@@ -75,8 +76,11 @@ export function HomeCollage() {
       start();
     };
 
+    const menuIsOpen = () => document.documentElement.dataset.menu === "open";
+
     const onWheel = (event: WheelEvent) => {
       event.preventDefault();
+      if (menuIsOpen()) return;
       scrollBy(event.deltaMode === 1 ? event.deltaY * 16 : event.deltaY);
     };
 
@@ -91,7 +95,7 @@ export function HomeCollage() {
     let pointerY = 0;
 
     const onPointerDown = (event: PointerEvent) => {
-      if (event.pointerType === "mouse") return;
+      if (event.pointerType === "mouse" || menuIsOpen()) return;
       pointerId = event.pointerId;
       pointerY = event.clientY;
       document.body.classList.add("is-dragging");
@@ -149,7 +153,7 @@ export function HomeCollage() {
 
   return (
     <main className="stage">
-      <h1 className="sr">Austin Leis — Interior design studio, Los Angeles</h1>
+      <h1 className="sr">Austin Leis, photographer, Los Angeles</h1>
       <div className="p">
         <div className="ho-li_" ref={trackRef}>
           {loop.map((tile, index) => (
@@ -159,22 +163,24 @@ export function HomeCollage() {
               aria-hidden={index >= tiles.length}
             >
               <Link
-                className="ho-li-i"
+                className="ho-li-i pj"
                 href={`/projects/${tile.slug}`}
-                prefetch={false}
                 tabIndex={index >= tiles.length ? -1 : undefined}
               >
-                <span className="ho-li-tx">{tile.title}</span>
-                <span
-                  className="ho-li-im"
-                  style={{ aspectRatio: `${tile.width} / ${tile.height}` }}
-                >
+                <span className="pj-tx">{tile.title}</span>
+                <span className="pj-im">
                   <Image
                     src={tile.src}
                     alt=""
-                    fill
+                    width={tile.width}
+                    height={tile.height}
                     sizes={tile.sizes}
                     priority={index < PRIORITY_TILES}
+                    loading={
+                      index >= PRIORITY_TILES && index >= tiles.length - TRAILING_TILES
+                        ? "eager"
+                        : undefined
+                    }
                   />
                 </span>
               </Link>

@@ -12,23 +12,38 @@ try {
 const ROOT = process.cwd();
 const SOURCE_DIR = path.join(ROOT, "source-images");
 const PUBLIC_DIR = path.join(ROOT, "public");
-const TILES_FILE = path.join(ROOT, "app/data/tiles.ts");
-
-const REFERENCE_VIEWPORT = 1920;
-const PIXEL_RATIO = 2;
+const DATA_DIR = path.join(ROOT, "app/data");
 const QUALITY = 78;
 
 const kb = (bytes) => Math.round(bytes / 1024);
 
 async function readTiles() {
-  const source = await fs.readFile(TILES_FILE, "utf8");
-  const pattern = /src: "([^"]+)"[\s\S]*?sizes: "[^"]*?([\d.]+)vw"/g;
-  const tiles = [...source.matchAll(pattern)].map(([, src, vw]) => ({
-    src,
-    widest: Math.ceil((Number(vw) / 100) * REFERENCE_VIEWPORT * PIXEL_RATIO),
-  }));
-  if (!tiles.length) throw new Error(`No tiles parsed from ${TILES_FILE}`);
-  return tiles;
+  const files = (await fs.readdir(DATA_DIR)).filter((name) => name.endsWith(".ts"));
+  const wanted = new Map();
+
+  for (const file of files) {
+    const source = await fs.readFile(path.join(DATA_DIR, file), "utf8");
+    for (const [, src] of source.matchAll(/src: "([^"]+)"/g)) {
+      const match = src.match(/^(.*)--(\d+)\.jpg$/);
+      if (!match) throw new Error(`${src} is missing its --<width> variant suffix`);
+      wanted.set(src, { src, from: `${match[1]}.jpg`, width: Number(match[2]) });
+    }
+  }
+
+  if (!wanted.size) throw new Error(`No tiles parsed from ${DATA_DIR}`);
+  return [...wanted.values()];
+}
+
+async function removeStale(keep) {
+  const entries = await fs.readdir(PUBLIC_DIR, { recursive: true, withFileTypes: true });
+  for (const entry of entries) {
+    if (entry.isDirectory() || !entry.name.endsWith(".jpg")) continue;
+    const relative = "/" + path.relative(PUBLIC_DIR, path.join(entry.parentPath, entry.name));
+    if (!keep.has(relative)) {
+      await fs.rm(path.join(entry.parentPath, entry.name));
+      console.log(`removed stale ${relative}`);
+    }
+  }
 }
 
 async function build() {
@@ -37,25 +52,22 @@ async function build() {
   let after = 0;
 
   for (const tile of tiles) {
-    const from = path.join(SOURCE_DIR, tile.src);
+    const from = path.join(SOURCE_DIR, tile.from);
     const to = path.join(PUBLIC_DIR, tile.src);
-    const original = await sharp(from);
-    const { width: sourceWidth } = await original.metadata();
-    const target = Math.min(sourceWidth, tile.widest);
 
     await fs.mkdir(path.dirname(to), { recursive: true });
     await sharp(from)
-      .resize({ width: target, withoutEnlargement: true })
+      .resize({ width: tile.width, withoutEnlargement: true })
       .jpeg({ quality: QUALITY, mozjpeg: true, progressive: true })
       .toFile(to);
 
-    const [src, out] = await Promise.all([fs.stat(from), fs.stat(to)]);
-    before += src.size;
-    after += out.size;
-    console.log(`${tile.src}\n  ${sourceWidth}px ${kb(src.size)}KB -> ${target}px ${kb(out.size)}KB`);
+    const [source, output] = await Promise.all([fs.stat(from), fs.stat(to)]);
+    before += source.size;
+    after += output.size;
   }
 
-  console.log(`\n${tiles.length} images: ${kb(before)}KB -> ${kb(after)}KB`);
+  await removeStale(new Set(tiles.map((tile) => tile.src)));
+  console.log(`${tiles.length} variants: ${kb(before)}KB of sources -> ${kb(after)}KB served`);
 }
 
 build().catch((error) => {
