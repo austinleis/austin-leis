@@ -672,6 +672,11 @@ body.is-dragging {
         padding: calc(var(--u) * 6) var(--gutter) calc(var(--u) * 3);
     }
 
+    .wk-g {
+        grid-template-columns: repeat(2, 1fr);
+        row-gap: calc(var(--u) * 1.5);
+    }
+
     .tp {
         grid-template-columns: 1fr;
         row-gap: calc(var(--u) * 1.5);
