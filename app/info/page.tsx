@@ -14,10 +14,10 @@ const groups = [
 
 export default function Info() {
   return (
-    <main className="in">
-      <h1 className="in-ti">Info</h1>
+    <main className="tp in">
+      <h1 className="tp-ti">Info</h1>
 
-      <div className="in-bd">
+      <div className="tp-bd">
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
           incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
@@ -34,7 +34,7 @@ export default function Info() {
         </p>
       </div>
 
-      <figure className="in-fig">
+      <figure className="tp-fig">
         <Image
           src={infoImage.src}
           alt="Portrait drawing"
@@ -45,7 +45,7 @@ export default function Info() {
         />
       </figure>
 
-      <dl className="in-me">
+      <dl className="tp-me">
         {groups.map((group) => (
           <div key={group.term}>
             <dt>{group.term}</dt>

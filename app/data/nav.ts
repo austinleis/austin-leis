@@ -1,13 +1,12 @@
 export type NavItem = {
   label: string;
   href: string;
-  missing?: boolean;
 };
 
 export const menu: NavItem[] = [
   { label: "Work", href: "/work" },
   { label: "Info", href: "/info" },
-  { label: "Contact", href: "/contact", missing: true },
+  { label: "Contact", href: "/contact" },
 ];
 
 export const instagram = {

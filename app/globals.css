@@ -360,7 +360,7 @@ body.is-dragging {
     transform: none;
 }
 
-.in {
+.tp {
     position: absolute;
     inset: 0;
     overflow-y: auto;
@@ -377,12 +377,12 @@ body.is-dragging {
         transform 700ms var(--ease-out);
 }
 
-:root[data-ready="true"] .in {
+:root[data-ready="true"] .tp {
     opacity: 1;
     transform: none;
 }
 
-.in-ti {
+.tp-ti {
     grid-column: 1 / span 2;
     font-size: var(--fs-sm);
     font-weight: 400;
@@ -390,52 +390,66 @@ body.is-dragging {
     opacity: 0.4;
 }
 
-.in-bd {
+.tp-bd {
     grid-column: 3 / span 5;
 }
 
-.in-bd p {
+.tp-bd p {
     line-height: 1.7;
 }
 
-.in-bd p+p {
+.tp-bd p+p {
     margin-top: calc(var(--u) * 0.8);
 }
 
-.in-fig {
+.tp-fig {
     grid-column: 10 / span 3;
 }
 
-.in-fig img {
+.tp-fig img {
     display: block;
     width: 100%;
     height: auto;
 }
 
-.in-me {
+.tp-me {
     grid-column: 3 / span 10;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
     column-gap: var(--u);
     margin-top: calc(var(--u) * 2);
 }
 
-.in-me>div {
-    columns: 2;
-    column-gap: var(--u);
-}
-
-.in-me dt {
+.tp-me dt {
     column-span: all;
     margin-bottom: calc(var(--u) * 0.6);
     font-size: var(--fs-sm);
     opacity: 0.4;
 }
 
-.in-me dd {
+.tp-me dd {
     break-inside: avoid;
-    font-size: var(--fs-sm);
     line-height: 1.7;
+}
+
+.tp-me a {
+    margin-left: calc(var(--tx-pad) * -1);
+}
+
+.in .tp-me {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.in .tp-me>div {
+    columns: 2;
+    column-gap: var(--u);
+}
+
+.in .tp-me dd {
+    font-size: var(--fs-sm);
+}
+
+.ct .tp-me {
+    grid-template-columns: repeat(3, 1fr);
 }
 
 .wk-g {
@@ -658,36 +672,32 @@ body.is-dragging {
         padding: calc(var(--u) * 6) var(--gutter) calc(var(--u) * 3);
     }
 
-    .in {
+    .tp {
         grid-template-columns: 1fr;
         row-gap: calc(var(--u) * 1.5);
         padding: calc(var(--u) * 6) var(--gutter) calc(var(--u) * 3);
     }
 
-    .in-ti,
-    .in-bd,
-    .in-fig,
-    .in-me {
+    .tp-ti,
+    .tp-bd,
+    .tp-fig,
+    .tp-me {
         grid-column: 1 / -1;
     }
 
-    .in-fig {
+    .tp-fig {
         width: 62vw;
     }
 
-    .in-me {
+    .tp-me {
         grid-template-columns: 1fr;
         row-gap: calc(var(--u) * 1.5);
         margin-top: 0;
     }
 
-    .in-me>div {
-        columns: 2;
-    }
-
-    .wk-g {
-        grid-template-columns: repeat(2, 1fr);
-        row-gap: calc(var(--u) * 1.5);
+    .in .tp-me,
+    .ct .tp-me {
+        grid-template-columns: 1fr;
     }
 
     .ho-li:nth-child(13n + 1) {
@@ -1056,7 +1066,7 @@ body.is-dragging {
     .stage,
     .wk,
     .pr,
-    .in {
+    .tp {
         transform: none;
     }
 }

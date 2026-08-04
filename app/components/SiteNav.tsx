@@ -12,11 +12,7 @@ export function SiteNav() {
       <ul id="n-me">
         {menu.map((item) => (
           <li key={item.href}>
-            <Link
-              className="tx-link"
-              href={item.href}
-              prefetch={item.missing ? false : undefined}
-            >
+            <Link className="tx-link" href={item.href}>
               {item.label}
             </Link>
           </li>

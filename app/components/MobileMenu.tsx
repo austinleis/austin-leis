@@ -60,11 +60,7 @@ export function MobileMenu() {
         <ul id="n-dr-me">
           {menu.map((item) => (
             <li key={item.href}>
-              <Link
-                href={item.href}
-                prefetch={item.missing ? false : undefined}
-                onClick={() => setState(false)}
-              >
+              <Link href={item.href} onClick={() => setState(false)}>
                 {item.label}
               </Link>
             </li>
