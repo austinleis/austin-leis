@@ -1,4 +1,6 @@
+import { orderRankField } from "@sanity/orderable-document-list";
 import { defineField, defineType } from "sanity";
+import { MultiImageInput } from "../components/MultiImageInput";
 
 export const project = defineType({
   name: "project",
@@ -35,6 +37,7 @@ export const project = defineType({
       type: "array",
       of: [{ type: "image", options: { hotspot: true } }],
       options: { layout: "grid" },
+      components: { input: MultiImageInput },
       description: "The first image is used as the cover. Drag to reorder.",
       validation: (rule) => rule.min(1),
     }),
@@ -44,17 +47,7 @@ export const project = defineType({
       type: "boolean",
       initialValue: false,
     }),
-    defineField({
-      name: "order",
-      title: "Position",
-      type: "number",
-      description: "Lower numbers appear first on the work page.",
-      initialValue: 100,
-    }),
-  ],
-  orderings: [
-    { title: "Position", name: "order", by: [{ field: "order", direction: "asc" }] },
-    { title: "Client", name: "client", by: [{ field: "client", direction: "asc" }] },
+    orderRankField({ type: "project" }),
   ],
   preview: {
     select: { client: "client", title: "title", media: "images.0" },

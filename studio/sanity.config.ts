@@ -1,3 +1,4 @@
+import { orderableDocumentListDeskItem } from "@sanity/orderable-document-list";
 import { visionTool } from "@sanity/vision";
 import { defineConfig } from "sanity";
 import { structureTool } from "sanity/structure";
@@ -10,13 +11,16 @@ export default defineConfig({
   dataset: "production",
   plugins: [
     structureTool({
-      structure: (S) =>
+      structure: (S, context) =>
         S.list()
           .title("Content")
           .items([
-            S.listItem()
-              .title("Projects")
-              .child(S.documentTypeList("project").title("Projects")),
+            orderableDocumentListDeskItem({
+              type: "project",
+              title: "Projects",
+              S,
+              context,
+            }),
             S.divider(),
             S.listItem()
               .title("Site settings")

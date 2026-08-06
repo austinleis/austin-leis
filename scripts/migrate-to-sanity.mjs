@@ -63,7 +63,7 @@ async function run() {
   const total = projects.reduce((n, p) => n + p.images.length, 0);
   let done = 0;
 
-  for (const [index, project] of projects.entries()) {
+  for (const project of projects) {
     const ids = [];
     for (let i = 0; i < project.images.length; i += BATCH) {
       const slice = project.images.slice(i, i + BATCH);
@@ -80,7 +80,6 @@ async function run() {
       title: project.title === project.client ? undefined : project.title,
       slug: { _type: "slug", current: project.slug },
       featured: false,
-      order: (index + 1) * 10,
       images: ids.map((id, i) => ({
         _key: `${project.slug}-${i}`,
         _type: "image",

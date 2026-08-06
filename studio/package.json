@@ -7,10 +7,11 @@
     "deploy": "sanity deploy"
   },
   "dependencies": {
-    "sanity": "^3",
-    "@sanity/vision": "^3",
+    "@sanity/orderable-document-list": "^2.0.18",
+    "@sanity/vision": "^6.9.0",
     "react": "^19",
     "react-dom": "^19",
-    "styled-components": "^6"
+    "sanity": "^6.9.0",
+    "styled-components": "^6.1.15"
   }
 }
