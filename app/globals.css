@@ -983,11 +983,10 @@ body.is-dragging {
 
 @media (prefers-reduced-motion: reduce) {
 
-    #lo-pr>div,
-    #lo-pr,
-    #lo-bg,
     .stage,
     .wk,
+    .pr,
+    .tp,
     #n {
         transition-duration: 1ms;
     }

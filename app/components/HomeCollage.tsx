@@ -192,7 +192,7 @@ export function HomeCollage() {
                 href={`/projects/${tile.slug}`}
                 tabIndex={index >= tiles.length ? -1 : undefined}
               >
-                <span className="pj-tx">{tile.title}</span>
+                <span className="pj-tx">{tile.label}</span>
                 <span className="pj-im">
                   <Image
                     src={tile.src}

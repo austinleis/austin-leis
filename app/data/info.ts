@@ -1,17 +1,3 @@
-export type InfoImage = {
-  src: string;
-  width: number;
-  height: number;
-  sizes: string;
-};
-
-export const infoImage: InfoImage = {
-  src: "/portrait--608.jpg",
-  width: 608,
-  height: 639,
-  sizes: "(max-width: 767px) 62vw, 22vw"
-};
-
 export const publications: string[] = [
   "Architectural Digest - Germany",
   "Architectural Digest - US",

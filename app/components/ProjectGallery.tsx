@@ -86,8 +86,8 @@ export function ProjectGallery({ project }: { project: Project }) {
       />
 
       <div className="pr-me">
-        <h1>{project.title}</h1>
-        <p>{project.year}</p>
+        <h1>{project.client}</h1>
+        {project.title !== project.client ? <p>{project.title}</p> : null}
         <p className="pr-ct" aria-live="polite">
           {String(slot + 1).padStart(2, "0")}/{String(count).padStart(2, "0")}
         </p>

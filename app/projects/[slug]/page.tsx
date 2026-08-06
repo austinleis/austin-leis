@@ -15,8 +15,8 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   if (!project) return {};
 
   return {
-    title: `${project.title} - Austin Leis`,
-    description: `${project.title}, photographed by Austin Leis, ${project.year}.`,
+    title: `${project.label} - Austin Leis`,
+    description: `${project.label}, photographed by Austin Leis.`,
     alternates: { canonical: `/projects/${project.slug}` },
   };
 }

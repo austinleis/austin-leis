@@ -1,6 +1,6 @@
 export type Tile = {
   slug: string;
-  title: string;
+  label: string;
   src: string;
   width: number;
   height: number;
@@ -9,107 +9,107 @@ export type Tile = {
 
 export const tiles: Tile[] = [
   {
-    slug: "galerie-half",
-    title: "Galerie Half",
-    src: "/galerie-half/SnapInsta.to_662312369_18577526353020058_7049058101604642420_n--720.jpg",
+    slug: "aime-leon-dore-los-angeles",
+    label: "Aime Leon Dore, Los Angeles",
+    src: "/media/aime-leon-dore-los-angeles/ald-day-2-003-edit-edit-edit-edit--720.webp",
     width: 720,
-    height: 897,
+    height: 900,
     sizes: "(max-width: 767px) 62vw, 18.75vw"
   },
   {
-    slug: "ome-dezin",
-    title: "Ome Dezin",
-    src: "/ome-dezin/SnapInsta.to_671658581_18582459469020058_2597371885676409297_n--480.jpg",
+    slug: "andrew-cosbie-yacht",
+    label: "Andrew Cosbie, Yacht",
+    src: "/media/andrew-cosbie-yacht/andrew-cosbie-yacht-032-edit-edit-edit-edit-edit-edit-edit-edit--480.webp",
     width: 480,
-    height: 597,
+    height: 601,
     sizes: "(max-width: 767px) 42vw, 12.5vw"
   },
   {
-    slug: "seventh-st",
-    title: "Seventh St",
-    src: "/seventh-st/SnapInsta.to_670039860_18579879436020058_96516497729486715_n--401.jpg",
+    slug: "clements-design-doheny",
+    label: "Clements Design, Doheny",
+    src: "/media/clements-design-doheny/doheny-026-edit--401.webp",
     width: 401,
-    height: 501,
+    height: 519,
     sizes: "(max-width: 767px) 33vw, 10.42vw"
   },
   {
-    slug: "how-house",
-    title: "How House",
-    src: "/how-house/SnapInsta.to_645557515_18569211109020058_3820748212438954493_n--1440.jpg",
-    width: 1440,
-    height: 1792,
+    slug: "courtney-applebaum-henry-street",
+    label: "Courtney Applebaum, Henry Street",
+    src: "/media/courtney-applebaum-henry-street/applebaum-henry-st-017-painting-edit--1601.webp",
+    width: 1601,
+    height: 1068,
     sizes: "(max-width: 767px) 100vw, 41.67vw"
   },
   {
-    slug: "elle-decor",
-    title: "Elle Decor",
-    src: "/elle-decor/SnapInsta.to_656197546_18573561478020058_3798771913597329957_n--641.jpg",
+    slug: "jenni-kayne-bonnymede",
+    label: "Jenni Kayne, Bonnymede",
+    src: "/media/jenni-kayne-bonnymede/jenni-kayne-bonnymede-007-edit--641.webp",
     width: 641,
-    height: 799,
+    height: 802,
     sizes: "(max-width: 767px) 46vw, 16.67vw"
   },
   {
-    slug: "aime-leon-dore-los-angeles",
-    title: "Aimé Leon Dore Los Angeles",
-    src: "/aime-leon-dore-los-angeles/SnapInsta.to_670632180_18580357453020058_8327147711777379715_n--401.jpg",
+    slug: "madhappy-melrose",
+    label: "Madhappy, Melrose",
+    src: "/media/madhappy-melrose/mh-melrose-010--401.webp",
     width: 401,
-    height: 501,
+    height: 502,
     sizes: "(max-width: 767px) 36vw, 10.42vw"
   },
   {
-    slug: "montecito-by-acosbie",
-    title: "Montecito",
-    src: "/montecito-by-acosbie/SnapInsta.to_729976791_18599755489020058_1131325078730801305_n--641.jpg",
+    slug: "ome-dezin-la-presa",
+    label: "Ome Dezin, La Presa",
+    src: "/media/ome-dezin-la-presa/251227105957050005-edit-edit-edit--641.webp",
     width: 641,
-    height: 804,
+    height: 801,
     sizes: "(max-width: 767px) 55vw, 16.67vw"
   },
   {
-    slug: "ome-dezin",
-    title: "Ome Dezin",
-    src: "/ome-dezin/SnapInsta.to_681690610_18582458266020058_5756641326040644503_n--960.jpg",
+    slug: "openhouse-magazine-galerie-half",
+    label: "Openhouse Magazine, Galerie Half",
+    src: "/media/openhouse-magazine-galerie-half/46793-1-0006-edit--960.webp",
     width: 960,
-    height: 1203,
+    height: 1201,
     sizes: "(max-width: 767px) 78vw, 25vw"
   },
   {
-    slug: "galerie-half",
-    title: "Galerie Half",
-    src: "/galerie-half/SnapInsta.to_662530244_18577526296020058_392299096947773305_n--1280.jpg",
+    slug: "personal-work",
+    label: "Personal Work",
+    src: "/media/personal-work/hand-print-scan-3-5-edit--1280.webp",
     width: 1280,
-    height: 1587,
+    height: 1600,
     sizes: "(max-width: 767px) 82vw, 33.33vw"
   },
   {
-    slug: "seventh-st",
-    title: "Seventh St",
-    src: "/seventh-st/SnapInsta.to_671234550_18579879562020058_2834679692219103391_n--480.jpg",
+    slug: "r-miller",
+    label: "R. Miller",
+    src: "/media/r-miller/r-miller-home-052-2-edit--480.webp",
     width: 480,
-    height: 601,
+    height: 600,
     sizes: "(max-width: 767px) 40vw, 12.5vw"
   },
   {
-    slug: "how-house",
-    title: "How House",
-    src: "/how-house/SnapInsta.to_645474801_18569210689020058_5146144489956474478_n--480.jpg",
+    slug: "studio-ford-bauhaus",
+    label: "Studio Ford, Bauhaus",
+    src: "/media/studio-ford-bauhaus/000053100001--480.webp",
     width: 480,
-    height: 601,
+    height: 655,
     sizes: "(max-width: 767px) 40vw, 12.5vw"
   },
   {
-    slug: "aime-leon-dore-los-angeles",
-    title: "Aimé Leon Dore Los Angeles",
-    src: "/aime-leon-dore-los-angeles/SnapInsta.to_671160956_18580357426020058_1448713586305342110_n--480.jpg",
+    slug: "studio-muka-kas",
+    label: "Studio Muka, KAS",
+    src: "/media/studio-muka-kas/studio-muka-kas-023--480.webp",
     width: 480,
-    height: 597,
+    height: 601,
     sizes: "(max-width: 767px) 34vw, 12.5vw"
   },
   {
-    slug: "elle-decor",
-    title: "Elle Decor",
-    src: "/elle-decor/SnapInsta.to_656821044_18573561028020058_3414875729863642801_n--1040.jpg",
+    slug: "victoria-porter-masselin",
+    label: "Victoria Porter, Masselin",
+    src: "/media/victoria-porter-masselin/victoria-porter-home-017-edit--1040.webp",
     width: 1040,
-    height: 1299,
+    height: 1300,
     sizes: "(max-width: 767px) 88vw, 27.08vw"
   }
 ];

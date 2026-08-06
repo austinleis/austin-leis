@@ -1,0 +1,80 @@
+import { defineField, defineType } from "sanity";
+
+export const siteSettings = defineType({
+  name: "siteSettings",
+  title: "Site settings",
+  type: "document",
+  groups: [
+    { name: "general", title: "General", default: true },
+    { name: "info", title: "Info page" },
+    { name: "contact", title: "Contact page" },
+  ],
+  fields: [
+    defineField({
+      name: "siteTitle",
+      title: "Name in the header",
+      type: "string",
+      group: "general",
+      initialValue: "Austin Leis",
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: "description",
+      title: "Search engine description",
+      type: "text",
+      rows: 2,
+      group: "general",
+    }),
+    defineField({
+      name: "instagram",
+      title: "Instagram address",
+      type: "url",
+      group: "general",
+    }),
+    defineField({
+      name: "infoBody",
+      title: "Info text",
+      type: "array",
+      of: [{ type: "block", styles: [], lists: [], marks: { decorators: [] } }],
+      group: "info",
+    }),
+    defineField({
+      name: "portrait",
+      title: "Portrait",
+      type: "image",
+      options: { hotspot: true },
+      group: "info",
+    }),
+    defineField({
+      name: "publications",
+      title: "Publications",
+      type: "array",
+      of: [{ type: "string" }],
+      group: "info",
+    }),
+    defineField({
+      name: "clients",
+      title: "Clients",
+      type: "array",
+      of: [{ type: "string" }],
+      group: "info",
+    }),
+    defineField({
+      name: "contactBody",
+      title: "Contact text",
+      type: "array",
+      of: [{ type: "block", styles: [], lists: [], marks: { decorators: [] } }],
+      group: "contact",
+    }),
+    defineField({ name: "email", title: "Email", type: "string", group: "contact" }),
+    defineField({ name: "location", title: "Location", type: "string", group: "contact" }),
+    defineField({
+      name: "contactImage",
+      title: "Contact image",
+      type: "image",
+      options: { hotspot: true },
+      group: "contact",
+    }),
+  ],
+  preview: { prepare: () => ({ title: "Site settings" }) },
+});

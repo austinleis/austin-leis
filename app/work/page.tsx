@@ -16,9 +16,9 @@ export default function Work() {
       <h1 className="sr">Work - Austin Leis</h1>
       <ul className="wk-g">
         {workTiles.map((tile, index) => (
-          <li key={`${tile.slug}-${index}`}>
+          <li key={tile.slug}>
             <Link className="pj" href={`/projects/${tile.slug}`}>
-              <span className="pj-tx">{tile.title}</span>
+              <span className="pj-tx">{tile.label}</span>
               <span className="pj-im">
                 <Image
                   src={tile.src}

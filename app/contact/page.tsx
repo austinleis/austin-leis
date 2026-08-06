@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { contactImage } from "@/app/data/contact";
+import { contactFigure } from "@/app/data/figures";
 import { instagram } from "@/app/data/nav";
 
 export const metadata: Metadata = {
@@ -23,11 +23,11 @@ export default function Contact() {
 
       <figure className="tp-fig">
         <Image
-          src={contactImage.src}
+          src={contactFigure.src}
           alt=""
-          width={contactImage.width}
-          height={contactImage.height}
-          sizes={contactImage.sizes}
+          width={contactFigure.width}
+          height={contactFigure.height}
+          sizes={contactFigure.sizes}
           priority
         />
       </figure>

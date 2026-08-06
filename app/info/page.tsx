@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { clients, infoImage, publications } from "@/app/data/info";
+import { portrait } from "@/app/data/figures";
+import { clients, publications } from "@/app/data/info";
 
 export const metadata: Metadata = {
   title: "Info - Austin Leis",
@@ -36,11 +37,11 @@ export default function Info() {
 
       <figure className="tp-fig">
         <Image
-          src={infoImage.src}
+          src={portrait.src}
           alt="Portrait drawing"
-          width={infoImage.width}
-          height={infoImage.height}
-          sizes={infoImage.sizes}
+          width={portrait.width}
+          height={portrait.height}
+          sizes={portrait.sizes}
           priority
         />
       </figure>
