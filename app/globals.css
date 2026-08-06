@@ -217,8 +217,6 @@ body.is-dragging {
     --pr-w: min(calc(var(--pr-h) * 0.8), var(--pr-max-w));
     --pr-peek: 5vw;
     --pr-step: calc(50vw + var(--pr-w) / 2 - var(--pr-peek));
-    --pr-fade: 7vw;
-    --pr-veil: rgb(255 255 255 / 0.76);
     position: absolute;
     inset: 0;
     overflow: hidden;
@@ -257,20 +255,6 @@ body.is-dragging {
     display: flex;
     flex: 0 0 var(--pr-step);
     justify-content: center;
-}
-
-.pr-vl {
-    position: absolute;
-    z-index: 2;
-    inset: 0;
-    pointer-events: none;
-    background: linear-gradient(to right,
-            var(--pr-veil) 0,
-            var(--pr-veil) calc(50% - var(--pr-w) / 2 - var(--pr-fade)),
-            transparent calc(50% - var(--pr-w) / 2),
-            transparent calc(50% + var(--pr-w) / 2),
-            var(--pr-veil) calc(50% + var(--pr-w) / 2 + var(--pr-fade)),
-            var(--pr-veil) 100%);
 }
 
 .pr-im {

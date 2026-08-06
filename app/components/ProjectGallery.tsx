@@ -70,7 +70,6 @@ export function ProjectGallery({ project }: { project: Project }) {
         </div>
       </div>
 
-      <div className="pr-vl" aria-hidden="true" />
 
       <button
         className="pr-go pr-go-prev"
