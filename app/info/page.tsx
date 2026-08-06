@@ -1,11 +1,20 @@
 import type { Metadata } from "next";
+import { ogImage } from "@/app/lib/site";
 import Image from "next/image";
 import { portrait } from "@/app/data/figures";
 import { clients, publications } from "@/app/data/info";
 
 export const metadata: Metadata = {
-  title: "Info - Austin Leis",
+  title: "Info",
+  description:
+    "About Austin Leis, a photographer based in Los Angeles, with a list of the publications his work has appeared in and the clients he works with.",
   alternates: { canonical: "/info" },
+  openGraph: {
+    title: "Info | Austin Leis",
+    description: "About Austin Leis, photographer, Los Angeles.",
+    url: "/info",
+    images: [ogImage],
+  },
 };
 
 const groups = [

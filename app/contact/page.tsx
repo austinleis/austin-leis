@@ -1,11 +1,20 @@
 import type { Metadata } from "next";
+import { ogImage } from "@/app/lib/site";
 import Image from "next/image";
 import { contactFigure } from "@/app/data/figures";
 import { instagram } from "@/app/data/nav";
 
 export const metadata: Metadata = {
-  title: "Contact - Austin Leis",
+  title: "Contact",
+  description:
+    "Get in touch with Austin Leis about photography commissions, licensing and press. Based in Los Angeles, working internationally.",
   alternates: { canonical: "/contact" },
+  openGraph: {
+    title: "Contact | Austin Leis",
+    description: "Enquiries about photography commissions, licensing and press.",
+    url: "/contact",
+    images: [ogImage],
+  },
 };
 
 export default function Contact() {
