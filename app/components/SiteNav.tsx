@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { instagram, menu } from "@/app/data/nav";
+import { menu } from "@/app/data/nav";
 
-export function SiteNav() {
+export function SiteNav({ instagram }: { instagram: string }) {
   return (
     <nav id="n">
       <div id="n-lo">
@@ -22,11 +22,11 @@ export function SiteNav() {
         <li>
           <a
             className="tx-link"
-            href={instagram.href}
+            href={instagram}
             target="_blank"
             rel="noopener noreferrer"
           >
-            {instagram.label}
+            Instagram
           </a>
         </li>
       </ul>

@@ -2,10 +2,10 @@
 
 import Link from "next/link";
 import { useRef, useState } from "react";
-import { instagram, menu } from "@/app/data/nav";
+import { menu } from "@/app/data/nav";
 import { useMountEffect } from "@/app/hooks/useMountEffect";
 
-export function MobileMenu() {
+export function MobileMenu({ instagram }: { instagram: string }) {
   const [open, setOpen] = useState(false);
   const drawerRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -68,12 +68,12 @@ export function MobileMenu() {
         </ul>
         <a
           id="n-dr-ig"
-          href={instagram.href}
+          href={instagram}
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => setState(false)}
         >
-          {instagram.label}
+          Instagram
         </a>
       </div>
     </>

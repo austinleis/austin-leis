@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { ogImage } from "@/app/lib/site";
 import Image from "next/image";
 import Link from "next/link";
-import { workTiles } from "@/app/data/work";
+import { getWorkTiles } from "@/app/lib/content";
 import { JsonLd, breadcrumbSchema } from "@/app/lib/site";
 
 const PRIORITY_TILES = 5;
@@ -20,7 +20,8 @@ export const metadata: Metadata = {
   },
 };
 
-export default function Work() {
+export default async function Work() {
+  const workTiles = await getWorkTiles();
   return (
     <>
       <JsonLd schema={breadcrumbSchema([{ name: "Home", path: "" }, { name: "Work", path: "/work" }])} />

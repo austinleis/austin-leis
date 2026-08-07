@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ProjectGallery } from "@/app/components/ProjectGallery";
-import { projects } from "@/app/data/projects";
+import { getProjects } from "@/app/lib/content";
 import { JsonLd, breadcrumbSchema, siteName, siteUrl } from "@/app/lib/site";
 
 type Params = { params: Promise<{ slug: string }> };
 
-export function generateStaticParams() {
+export async function generateStaticParams() {
+  const projects = await getProjects();
   return projects.map((project) => ({ slug: project.slug }));
 }
 
@@ -15,6 +16,7 @@ const describe = (label: string) =>
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { slug } = await params;
+  const projects = await getProjects();
   const project = projects.find((item) => item.slug === slug);
   if (!project) return {};
 
@@ -43,6 +45,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
 
 export default async function ProjectPage({ params }: Params) {
   const { slug } = await params;
+  const projects = await getProjects();
   const project = projects.find((item) => item.slug === slug);
   if (!project) notFound();
 

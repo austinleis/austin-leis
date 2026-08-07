@@ -439,9 +439,25 @@ body.is-dragging {
 .wk-g {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    align-items: start;
     column-gap: var(--u);
-    row-gap: calc(var(--u) * 2);
+    row-gap: 0;
+}
+
+.wk-g>li {
+    display: grid;
+    grid-row: span 2;
+    grid-template-rows: subgrid;
+    margin-bottom: calc(var(--u) * 2);
+}
+
+.wk-g>li>.pj {
+    display: grid;
+    grid-row: span 2;
+    grid-template-rows: subgrid;
+}
+
+.wk-g .pj-tx {
+    align-self: end;
 }
 
 @media (min-width: 768px) {
@@ -658,7 +674,11 @@ body.is-dragging {
 
     .wk-g {
         grid-template-columns: repeat(2, 1fr);
-        row-gap: calc(var(--u) * 1.5);
+        row-gap: 0;
+    }
+
+    .wk-g>li {
+        margin-bottom: calc(var(--u) * 1.5);
     }
 
     .tp {
@@ -1033,13 +1053,13 @@ body.is-dragging {
 }
 
 ::view-transition-old(.page) {
-    animation: 180ms linear both pg-fade reverse;
+    animation: 140ms linear both pg-fade reverse;
 }
 
 ::view-transition-new(.page) {
     animation:
-        320ms linear 140ms both pg-fade,
-        520ms var(--ease-out) 140ms both pg-rise;
+        260ms linear 140ms both pg-fade,
+        460ms var(--ease-out) 140ms both pg-rise;
 }
 
 @media (prefers-reduced-motion: reduce) {

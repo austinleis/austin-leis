@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import type { Project } from "@/app/data/projects";
+import type { Project } from "@/app/lib/content";
 import { useMountEffect } from "@/app/hooks/useMountEffect";
 
 const COPIES = 3;

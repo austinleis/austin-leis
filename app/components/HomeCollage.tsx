@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
-import { loopCloneCount, tiles } from "@/app/data/tiles";
+import { type Tile, loopCloneCount } from "@/app/lib/content";
 import { useMountEffect } from "@/app/hooks/useMountEffect";
 import { damp } from "@/app/lib/motion";
 
@@ -14,9 +14,8 @@ const MAX_THROW_SPEED = 4;
 const PRIORITY_TILES = 4;
 const TRAILING_TILES = 3;
 
-const loop = [...tiles, ...tiles.slice(0, loopCloneCount)];
-
-export function HomeCollage() {
+export function HomeCollage({ tiles }: { tiles: Tile[] }) {
+  const loop = [...tiles, ...tiles.slice(0, loopCloneCount)];
   const trackRef = useRef<HTMLDivElement>(null);
 
   useMountEffect(() => {

@@ -4,6 +4,7 @@ import { ViewTransition } from "react";
 import { MobileMenu } from "@/app/components/MobileMenu";
 import { Reveal } from "@/app/components/Reveal";
 import { SiteNav } from "@/app/components/SiteNav";
+import { getSettings } from "@/app/lib/content";
 import { JsonLd, personSchema, siteDescription, siteName, siteUrl, websiteSchema } from "@/app/lib/site";
 import "./globals.css";
 
@@ -61,18 +62,20 @@ export const viewport: Viewport = {
   themeColor: "#ffffff",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const settings = await getSettings();
+
   return (
     <html lang="en" className={supplyMono.variable}>
       <body>
         <JsonLd schema={[personSchema(), websiteSchema()]} />
         <ViewTransition default="page">{children}</ViewTransition>
-        <SiteNav />
-        <MobileMenu />
+        <SiteNav instagram={settings.instagram} />
+        <MobileMenu instagram={settings.instagram} />
         <Reveal />
       </body>
     </html>

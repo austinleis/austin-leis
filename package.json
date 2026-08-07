@@ -6,9 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "images": "node scripts/build-images.mjs",
-    "lint": "eslint",
-    "migrate": "node --env-file=.env.local --experimental-strip-types scripts/migrate-to-sanity.mjs"
+    "lint": "eslint"
   },
   "dependencies": {
     "@sanity/image-url": "^2.1.1",

@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { ogImage } from "@/app/lib/site";
 import Image from "next/image";
-import { contactFigure } from "@/app/data/figures";
-import { instagram } from "@/app/data/nav";
+import { getSettings } from "@/app/lib/content";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -17,53 +16,55 @@ export const metadata: Metadata = {
   },
 };
 
-export default function Contact() {
+export default async function Contact() {
+  const settings = await getSettings();
+
   return (
     <main className="tp ct">
       <h1 className="tp-ti">Contact</h1>
 
       <div className="tp-bd">
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-          incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-          exercitation ullamco laboris.
-        </p>
+        {settings.contactBody.map((paragraph) => (
+          <p key={paragraph}>{paragraph}</p>
+        ))}
       </div>
 
-      <figure className="tp-fig">
-        <Image
-          src={contactFigure.src}
-          alt=""
-          width={contactFigure.width}
-          height={contactFigure.height}
-          sizes={contactFigure.sizes}
-          priority
-        />
-      </figure>
+      {settings.contactImage ? (
+        <figure className="tp-fig">
+          <Image
+            src={settings.contactImage.src}
+            alt=""
+            width={settings.contactImage.width}
+            height={settings.contactImage.height}
+            sizes={settings.contactImage.sizes}
+            priority
+          />
+        </figure>
+      ) : null}
 
       <dl className="tp-me">
         <div>
           <dt>Enquiries</dt>
           <dd>
-            <a className="tx-link" href="mailto:austin@austinleis.com">
-              austin@austinleis.com
+            <a className="tx-link" href={`mailto:${settings.email}`}>
+              {settings.email}
             </a>
           </dd>
         </div>
         <div>
           <dt>Studio</dt>
-          <dd>Los Angeles, California</dd>
+          <dd>{settings.location}</dd>
         </div>
         <div>
           <dt>Follow</dt>
           <dd>
             <a
               className="tx-link"
-              href={instagram.href}
+              href={settings.instagram}
               target="_blank"
               rel="noopener noreferrer"
             >
-              {instagram.label}
+              Instagram
             </a>
           </dd>
         </div>
